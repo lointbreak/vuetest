@@ -22,7 +22,7 @@
                 <app-bread></app-bread>
 
                 <!-- 主体内容 -->
-                <Content :style="{margin: '20px', background: '#fff', minHeight: '260px'}">
+                <Content :style="{margin: '20px', background: '#fff', minHeight: '260px'}" class="maincontent">
                     <router-view></router-view>
                 </Content>
             </Layout>
@@ -116,4 +116,8 @@
         margin: 20px;
     }
     
+
+    .maincontent {
+        background-color: #f5f7f9 !important;
+    }
 </style>

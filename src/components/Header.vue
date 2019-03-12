@@ -54,7 +54,9 @@ export default {
                 this.$store.dispatch('loginstore/loginout',{_this:this})
 
             }
-    }
+    },
+
+    
 
 }
 </script>
@@ -65,5 +67,16 @@ export default {
         color: red;
         font-size: 16px;
     }
+
+    .ivu-layout-sider-collapsed .ivu-menu .xixi li{
+        padding: 10px !important; 
+    }
+    .ivu-layout-sider-collapsed .ivu-menu-submenu-title span{
+        display: none
+    }
+    .ivu-layout-sider-collapsed .ivu-menu-submenu-title .ivu-icon-ios-arrow-down {
+        display: none;
+    }
+
 
 </style>

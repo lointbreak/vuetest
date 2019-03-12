@@ -54,7 +54,7 @@ export default {
                     {
                         title: '地址',
                         key: 'area',
-                        width : '250'
+                        width : '220'
                     },
                     {
                         title: '快递',
@@ -67,7 +67,7 @@ export default {
                         width : '120'
                     },
                     {
-                        title: 'Action',
+                        title: '操作',
                         key: 'action',
                         width: 150,
                         align: 'center',
@@ -84,10 +84,11 @@ export default {
                                     on: {
                                         click: () => {
                                             // this.show(params.index)
-                                            this.edithandle()
+                                            this.edithandle(params)
                                         }
                                     }
                                 }, '编辑'),
+
                                 h('Button', {
                                     props: {
                                         type: 'error',
@@ -95,10 +96,10 @@ export default {
                                     },
                                     on: {
                                         click: () => {
-                                            this.lookhandle()
+                                            this.lookhandle(params)
                                         }
                                     }
-                                }, '查看')
+                                }, '查看'),
                             ]);
                         }
                     }
@@ -176,20 +177,19 @@ export default {
         },
         //改变每页多小条数据
         chengepageSize(data){
-            console.log(data)
             this.datalist.pageSize = data;
             this.getorder()
         },
 
         // 点击编辑时候的事件
-        edithandle(){
+        edithandle(data){
             //跳转
-            this.$router.push('indentedit')
+            this.$router.push(`indentedit/${data.row.id}`)
         },
 
         //点击查看的事件
-        lookhandle(){
-            this.$router.push('indentlook')
+        lookhandle(data){
+            this.$router.push(`indentlook/${data.row.id}`)
         },
 
         //搜索事件

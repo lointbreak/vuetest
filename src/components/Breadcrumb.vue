@@ -31,4 +31,5 @@ export default {
         padding-bottom: 20px;
     }
 
+
 </style>

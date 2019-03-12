@@ -38,8 +38,8 @@ var routes = [
   {path : '/' , redirect : '/login'},
   {path : '/admin' , component : Admin, redirect : '/admin/indentlist',meta : '首页',children: [
     {path : 'indentlist' , component : IndentList , meta : '订单管理'},
-    {path : 'indentedit' , component : Indentedit , meta : '订单编辑'},
-    {path : 'Indentlook' , component : Indentlook , meta : '订单查看'},
+    {path : 'indentedit/:id' , component : Indentedit , meta : '订单编辑'},
+    {path : 'Indentlook/:id' , component : Indentlook , meta : '订单查看'},
   ]},
   {path : '/login' , component : Login},
 ]

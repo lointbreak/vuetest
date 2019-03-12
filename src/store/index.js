@@ -7,6 +7,8 @@ Vue.use(Vuex)
 
 //引入登录页面的仓库
 import loginstore from './modules/Loginstore'
+//引入订单数据
+import indent from './modules/Indent'
 
 
 
@@ -14,7 +16,8 @@ export default new Vuex.Store({
 
 
     modules : {
-        loginstore
+        loginstore,
+        indent
     }
 
 
