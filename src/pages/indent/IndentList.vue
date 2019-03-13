@@ -24,7 +24,7 @@
 
         <!-- 分页 -->
         <div class="page">
-            <Page :page-size-opts='[2,4,6]' :page-size="datalist.pageSize" :total="totalcount" size="small" show-elevator show-sizer  show-total @on-change="changepageIndex" @on-page-size-change="chengepageSize"/>
+            <Page :page-size-opts='[2,4,6,8]' :page-size="datalist.pageSize" :total="totalcount" size="small" show-elevator show-sizer  show-total @on-change="changepageIndex" @on-page-size-change="chengepageSize"/>
         </div>
 
     </div>  
@@ -35,7 +35,7 @@ export default {
     data () {
         return {
             // 头部
-            select : '',
+            select : 0,
             //表格
             columns4: [
                     {
@@ -135,7 +135,7 @@ export default {
                 datalist : {
                     vipname : '',
                     orderstatus : '',
-                    pageSize : 2,
+                    pageSize : 8,
                     pageIndex : 1,
                 },
                 // 总条数
@@ -204,6 +204,8 @@ export default {
             this.datalist.pageIndex = 1
             this.getorder()
         },
+
+
 
         // 获取订单数据
         getorder(){

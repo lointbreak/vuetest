@@ -6,7 +6,6 @@ export default {
 
     state : {
         orderinfo : {},
-        goodsinfo : {},
     },
 
     actions : {
@@ -39,7 +38,7 @@ export default {
                         payment_time
                     }
                     
-                        data.ordata = info,
+                        data.orderinfo = info,
                         obj.state.orderinfo = info
                     
                     if(data.$route.meta == '订单查看'){

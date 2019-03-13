@@ -74,9 +74,13 @@
             collapsedSider () {
                 this.$refs.side1.toggleCollapse();
             },
+        },
 
-            
-        }
+        mounted (){
+            if(!localStorage.getItem('username')){
+                this.$router.push('/login')
+            }
+        } 
     }
 </script>
 <style scoped>
@@ -119,5 +123,6 @@
 
     .maincontent {
         background-color: #f5f7f9 !important;
+
     }
 </style>

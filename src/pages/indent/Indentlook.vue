@@ -1,25 +1,25 @@
 <template>
-    <div>
+    <div class="aaa">
         <Form  :label-width="80">
             <div class="detail">订单详情:</div>
             <div class="chakan">
                 <FormItem label="订单id">
-                        {{ordata.id}}
+                        {{orderinfo.id}}
                 </FormItem>
                 <FormItem label="会员名称">
-                        {{ordata.user_name}}
+                        {{orderinfo.user_name}}
                 </FormItem>
                 <FormItem label="地址">
-                        {{ordata.area}}
+                        {{orderinfo.area}}
                 </FormItem>
                 <FormItem label="快递">
-                        {{ordata.expressTitle}}
+                        {{orderinfo.expressTitle}}
                 </FormItem>
                 <FormItem label="状态">
-                        {{ordata.orderstatus}}
+                        {{orderinfo.orderstatus|statuschange}}
                 </FormItem>
                 <FormItem label="购买时间">
-                        {{ordata.payment_time}}
+                        {{orderinfo.payment_time}}
                 </FormItem>
             </div>
 
@@ -27,9 +27,6 @@
             <Table  :columns="columns4" :data="data1" class="oo"></Table>
                 
         </Form>
-
-
-
 
     </div>
 </template>
@@ -43,19 +40,35 @@ export default {
 
         
 
-        ...mapState('indent',{
-            ordata : 'orderinfo',
-            goodsinfo : 'goodsinfo'
-        }),
+        // ...mapState('indent',{
+        //     orderinfo : 'orderinfo',
+        // }),
     },
 
     mounted(){
-        this.$store.dispatch('indent/getorder',this).then(data=>{
+        // this.$store.dispatch('indent/getorder',this).then(data=>{
+            // var arr = {
+            //     imgurl : data.imgurl,
+            //     goods_title : data.goods_title,
+            //     goods_no : data.goods_no,
+            //     goods_price : data.goods_price,
+            // }
+            // var data2 = [];
+            // data2.push(arr)
+            // this.data1 = data2
+        // })
+        this.$axios({
+            url : `/admin/order/getorderdetial/${this.$route.params.id}`,
+            withCredentials: true,
+        }).then(res =>{
+            this.orderinfo = res.data.message.orderinfo;
+
+
             var arr = {
-                imgurl : data.imgurl,
-                goods_title : data.goods_title,
-                goods_no : data.goods_no,
-                goods_price : data.goods_price,
+                imgurl : res.data.message.goodslist[0].imgurl,
+                goods_title : res.data.message.goodslist[0].goods_title,
+                goods_no : res.data.message.goodslist[0].goods_no,
+                goods_price : res.data.message.goodslist[0].goods_price,
             }
             var data2 = [];
             data2.push(arr)
@@ -63,10 +76,6 @@ export default {
         })
     },
 
-    // destroyed(){
-    //     localStorage.removeItem('goodsinfo')
-    // },
-    
 
     data () {
         return {
@@ -115,8 +124,31 @@ export default {
                 
             ],
 
+            orderinfo : {}
+
         }
     },
+
+
+    filters : {
+        statuschange(data){
+            if(data == 5){
+                return '已取消'
+            }else if(data == 4){
+                return '已签收'
+            }else if(data == 3){
+                return '已发货'
+            }
+            else if(data == 2){
+                return '已付款等待发货'
+            }
+            else if(data == 1){
+                return '待付款'
+            }
+            
+            
+        }
+    }
 
     
 
@@ -124,7 +156,7 @@ export default {
 }
 </script>
 
-<style scoped   >
+<style scoped>
 
     .ivu-form-item{
         margin-bottom: 0px;
